@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1027510130145",
+    "project_id": "magani-shop",
+    "storage_bucket": "magani-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027510130145:android:7a4bcf36653a0e7aae2ea0",
+        "android_client_info": {
+          "package_name": "ne.devmoa.magani_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACp1WtHI2chf8FY2b6oZVc_qHwJco0CKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
