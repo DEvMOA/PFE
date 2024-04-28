@@ -10,9 +10,7 @@ class CategoryWidget extends StatelessWidget {
       stream: FirebaseFirestore.instance.collection('Categories').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
-              child:
-                  CircularProgressIndicator()); // Afficher un indicateur de chargement si les données ne sont pas encore disponibles
+          return const Center(child: CircularProgressIndicator());
         }
         final List<DocumentSnapshot> documents = snapshot.data!.docs;
         return GridView.builder(
@@ -50,8 +48,7 @@ class CategoryWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        documents[index]
-                            ['catName'], // Assurez-vous que la clé est correcte
+                        documents[index]['catName'],
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.bold,

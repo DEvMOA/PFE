@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppWidget {
-  static TextStyle boldTextStyle() {
-    return const TextStyle(
-        fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 20.0);
+  static TextStyle boldTextStyle([double size = 20.00]) {
+    return TextStyle(
+        fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: size);
   }
 
   static TextField searchBar() {

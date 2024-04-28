@@ -10,11 +10,14 @@ class MedicineListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Query query = FirebaseFirestore.instance.collection('Medicines');
+
+    if (selectedCategory != "TOUS") {
+      query = query.where('category', isEqualTo: selectedCategory);
+    }
+
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection('Medicines')
-          .where('category', isEqualTo: selectedCategory)
-          .snapshots(),
+      stream: query.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return const Text('Something went wrong');
@@ -27,30 +30,21 @@ class MedicineListWidget extends StatelessWidget {
         }
 
         final medicines = snapshot.data!.docs;
-        return SizedBox(
-          height: MediaQuery.of(context).size.width *
-              0.75, // Hauteur de la première carte
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: medicines.length,
-            itemBuilder: (context, index) {
-              final medicineData = medicines[index];
-              return SizedBox(
-                width: MediaQuery.of(context).size.width *
-                    0.60, // Largeur fixe pour toutes les cartes
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 8.0), // Espacement entre les cartes
-                  child: MedicineCard(
-                    image: medicineData['image'],
-                    pharmacy: medicineData['pharmacyName'],
-                    name: medicineData['name'],
-                    description: medicineData['description'],
-                    price: medicineData['price'],
-                  ),
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: medicines.map((medicineData) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: MedicineCard(
+                  image: medicineData['image'],
+                  pharmacy: medicineData['pharmacyName'],
+                  name: medicineData['name'],
+                  description: medicineData['description'],
+                  price: medicineData['price'],
                 ),
               );
-            },
+            }).toList(),
           ),
         );
       },

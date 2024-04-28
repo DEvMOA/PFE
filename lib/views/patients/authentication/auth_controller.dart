@@ -23,10 +23,15 @@ class AuthController {
   }
 
   Future addUserDetails(String fullName, String email, int number) async {
-    await FirebaseFirestore.instance.collection('patients').add({
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
       'full name': fullName,
       'email': email,
       'number': number,
+      'imageUrl': "",
+      'uid': FirebaseAuth.instance.currentUser!.uid
     });
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:magani_shop/views/patients/nav-screens/cart_screen.dart';
+import 'package:magani_shop/views/patients/nav-screens/historique_screen.dart';
 import 'package:magani_shop/views/patients/nav-screens/home_screen.dart';
 import 'package:magani_shop/views/patients/nav-screens/search_screen.dart';
 import 'package:magani_shop/views/patients/nav-screens/settings_screen.dart';
@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _pages = [
     HomeScreen(),
     SearchScreen(),
-    CartScreen(),
+    HistoriqueScreen(),
     SettingsScreen(),
   ];
   @override
@@ -33,9 +33,7 @@ class _MainScreenState extends State<MainScreen> {
             child: GNav(
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
-
               activeColor: Colors.green,
-
               gap: 8,
               iconSize: 24,
               selectedIndex: _pageIndex,
@@ -45,13 +43,11 @@ class _MainScreenState extends State<MainScreen> {
                 });
               },
               padding: const EdgeInsets.all(16),
-              //tabBackgroundColor: const Color(0xFF00A86B),
-              //backgroundColor: Colors.black,
               tabs: const [
                 GButton(icon: Icons.home, text: 'Home'),
                 GButton(icon: Icons.search, text: 'Search'),
-                GButton(icon: Icons.shopping_bag, text: 'Panier'),
-                GButton(icon: Icons.person, text: 'Account'),
+                GButton(icon: Icons.shopping_bag, text: 'Historique'),
+                GButton(icon: Icons.settings, text: 'Settings'),
               ],
             ),
           ),
